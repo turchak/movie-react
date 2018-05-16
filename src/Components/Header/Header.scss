@@ -1,0 +1,14 @@
+.header {
+  background: rebeccapurple;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.logo {
+  width: 100px;
+  height: 71px;
+}
