@@ -1,29 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 import App from './App';
-import {Provider} from 'react-redux';
 import registerServiceWorker from './registerServiceWorker';
 
-
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const rootReducer = (state={}, action) => {
-
-};
-
-const store = createStore(
-    rootReducer,
-    composeEnhancers(applyMiddleware(thunk))
-);
+import './index.css';
 
 ReactDOM.render(
-    <Provider store={store} key='provider'>
-        <App/>
-    </Provider>,
-    document.getElementById('root')
+  <Provider store={store} key="provider">
+    <App />
+  </Provider>,
+  document.getElementById('root')
 );
 registerServiceWorker();
