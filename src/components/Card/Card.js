@@ -1,21 +1,86 @@
 import React, { Component } from 'react';
-import './Card';
+import { Link } from 'react-router-dom';
+import './Card.css';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import green from '@material-ui/core/colors/green';
 
-class Card extends Component {
+const styles = {
+  card: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 0,
+    paddingTop: '100%', // 16:9
+    backgroundPosition: 'top',
+  },
+  info: {
+    position: 'relative',
+    height: 160,
+    overflow: 'hidden',
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      width: '100%',
+      height: '15%',
+      backgroundImage: 'linear-gradient(to top,  #fff, rgba(255,255,255,0.62))',
+    },
+  },
+  link: {
+    textDecoration: 'none',
+    color: green[200],
+  },
+};
+
+class MovieCard extends Component {
   getImage(url) {
     const IMG_URL = 'https://image.tmdb.org/t/p/w500';
     return `${IMG_URL}${url}`;
   }
   render() {
+    const { item, classes } = this.props;
     return (
       <div className="card">
-        <div className="card__image">
-          <img src={this.getImage(this.props.data.poster_path)} alt="photo" />
-        </div>
-        <div className="card__content">{this.props.data.overview}</div>
+        <Card className={classes.card}>
+          <CardMedia
+            classes={{
+              root: classes.media,
+            }}
+            image={this.getImage(item.poster_path)}
+            title="Contemplative Reptile"
+            //TODO: change name
+          />
+          <CardContent>
+            <Typography
+              gutterBottom
+              variant="headline"
+              noWrap={true}
+              component="h2"
+            >
+              {item.title}
+            </Typography>
+            <Typography component="p" className={classes.info}>
+              {item.overview}
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small" color="primary">
+              <Link to={`/movie/${item.id}`} className={classes.link}>
+                More
+              </Link>
+            </Button>
+          </CardActions>
+        </Card>
       </div>
     );
   }
 }
 
-export default Card;
+export default withStyles(styles)(MovieCard);

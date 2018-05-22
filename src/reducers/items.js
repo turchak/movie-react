@@ -27,3 +27,13 @@ export const items = (state = [], action) => {
       return state;
   }
 };
+
+export const item = (state = [], action) => {
+  switch (action.type) {
+    case 'ITEM_FETCH_DATA_SUCCESS':
+      return action.item;
+
+    default:
+      return state;
+  }
+};

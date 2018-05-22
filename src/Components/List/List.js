@@ -1,7 +1,10 @@
+import './List.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { itemsFetchData } from '../../actions/items';
-import Card from '../Card/Card';
+import MovieCard from '../Card/Card';
+import Loader from '../Loader/Loader';
+
 class List extends Component {
   constructor(props) {
     super(props);
@@ -20,20 +23,23 @@ class List extends Component {
     }
 
     if (this.props.isLoading) {
-      return <p>Loading…</p>;
+      return <Loader />;
     }
 
     return (
       <main className="list">
-        <div className="container">
-          {this.props.items.map(item => <Card data={item} key={item.id} />)}
+        <div className="container list__container">
+          {this.props.items.map(item => (
+            <MovieCard item={item} key={item.id} />
+          ))}
         </div>
       </main>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  console.log(ownProps);
   return {
     items: state.items,
     hasErrored: state.itemsHasErrored,

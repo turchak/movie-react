@@ -1,15 +1,25 @@
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import { ConnectedRouter } from 'react-router-redux';
+import { Route } from 'react-router';
+import createHistory from 'history/createBrowserHistory';
 import App from './App';
+import Movie from './components/Movie/Movie';
 import registerServiceWorker from './registerServiceWorker';
 
-import './index.css';
+const history = createHistory();
 
 ReactDOM.render(
   <Provider store={store} key="provider">
-    <App />
+    <ConnectedRouter history={history}>
+      <div>
+        <Route exact path="/" component={App} />
+        <Route path="/movie/:itemId" component={Movie} />
+      </div>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 );
