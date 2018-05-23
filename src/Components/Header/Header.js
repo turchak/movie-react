@@ -59,7 +59,7 @@ class Header extends Component {
     return (
       <Grid className={classes.header}>
         <div className={classes.container}>
-          <a href="/#" className={classes.logo}>
+          <a href="#/" className={classes.logo}>
             Movie
           </a>
           {/* <img src={Logo} alt="Logo" className={classes.logo} /> */}
