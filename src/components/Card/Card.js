@@ -16,7 +16,7 @@ const styles = {
   },
   media: {
     height: 0,
-    paddingTop: '100%', // 16:9
+    paddingTop: '100%',
     backgroundPosition: 'top',
   },
   info: {

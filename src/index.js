@@ -5,7 +5,9 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { ConnectedRouter } from 'react-router-redux';
 import { Route } from 'react-router';
-import createHistory from 'history/createBrowserHistory';
+// import createHistory from 'history/createBrowserHistory';
+import createHistory from 'history/createHashHistory';
+
 import App from './App';
 import Movie from './components/Movie/Movie';
 import registerServiceWorker from './registerServiceWorker';

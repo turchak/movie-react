@@ -18,6 +18,7 @@ class List extends Component {
   handleClick() {}
 
   render() {
+    console.log(this.props);
     if (this.props.hasErrored) {
       return <p>Sorry! There was an error loading the items</p>;
     }
@@ -39,7 +40,6 @@ class List extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(ownProps);
   return {
     items: state.items,
     hasErrored: state.itemsHasErrored,
