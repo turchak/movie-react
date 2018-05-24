@@ -1,6 +1,4 @@
-import './Header.css';
 import React, { Component } from 'react';
-// import Logo from '../../img/movie-logo.png';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
@@ -54,6 +52,26 @@ const styles = theme => ({
 });
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: null,
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    console.log(window.location);
+    window.location.hash = `/search/${this.state.name}`;
+  }
+
+  handleChange(ev) {
+    this.setState({
+      name: ev.target.value,
+    });
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -62,7 +80,6 @@ class Header extends Component {
           <a href="#/" className={classes.logo}>
             Movie
           </a>
-          {/* <img src={Logo} alt="Logo" className={classes.logo} /> */}
           <FormControl className={classes.form}>
             <Input
               classes={{
@@ -70,10 +87,14 @@ class Header extends Component {
               }}
               placeholder="Name"
               autoComplete="false"
-              // margin="normal"
               label="Name"
+              onChange={this.handleChange}
             />
-            <Button variant="raised" className={classes.button}>
+            <Button
+              variant="raised"
+              className={classes.button}
+              onClick={this.handleClick}
+            >
               Search
             </Button>
           </FormControl>

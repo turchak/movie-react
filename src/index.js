@@ -10,6 +10,7 @@ import createHistory from 'history/createHashHistory';
 
 import App from './App';
 import Movie from './components/Movie/Movie';
+import Search from './components/Search/Search';
 import registerServiceWorker from './registerServiceWorker';
 
 const history = createHistory();
@@ -20,6 +21,7 @@ ReactDOM.render(
       <div>
         <Route exact path="/" component={App} />
         <Route path="/movie/:itemId" component={Movie} />
+        <Route useKey={false} path="/search/:itemId" component={Search} />
       </div>
     </ConnectedRouter>
   </Provider>,

@@ -44,6 +44,7 @@ class MovieCard extends Component {
     const IMG_URL = 'https://image.tmdb.org/t/p/w500';
     return `${IMG_URL}${url}`;
   }
+
   render() {
     const { item, classes } = this.props;
     return (
@@ -54,7 +55,7 @@ class MovieCard extends Component {
               root: classes.media,
             }}
             image={this.getImage(item.poster_path)}
-            title="Contemplative Reptile"
+            title={item.title}
             //TODO: change name
           />
           <CardContent>

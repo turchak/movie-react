@@ -27,6 +27,13 @@ export const itemFetchDataSuccess = item => {
   };
 };
 
+export const resultsFetchDataSuccess = search => {
+  return {
+    type: 'SEARCH_FETCH_DATA_SUCCESS',
+    search,
+  };
+};
+
 export const itemsFetchData = url => {
   return dispatch => {
     dispatch(itemsIsLoading(true));
@@ -61,6 +68,26 @@ export const itemFetchData = url => {
       })
       .then(response => response.json())
       .then(item => dispatch(itemFetchDataSuccess(item)))
+      .catch(() => dispatch(itemsHasErrored(true)));
+  };
+};
+
+export const searchFetchData = (url, param) => {
+  console.log(param);
+  return dispatch => {
+    dispatch(itemsIsLoading(true));
+    API.get(url, param)
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+
+        dispatch(itemsIsLoading(false));
+
+        return response;
+      })
+      .then(response => response.json())
+      .then(search => dispatch(resultsFetchDataSuccess(search.results)))
       .catch(() => dispatch(itemsHasErrored(true)));
   };
 };

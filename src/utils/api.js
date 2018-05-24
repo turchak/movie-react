@@ -8,7 +8,11 @@ class Api {
     const options = {
       method: 'GET',
     };
-    const url = `${this.BASE_URL}${link}?api_key=${this.API_KEY}`;
+    if (!param) {
+      const url = `${this.BASE_URL}${link}?api_key=${this.API_KEY}`;
+      return fetch(url, options);
+    }
+    const url = `${this.BASE_URL}${link}?api_key=${this.API_KEY}${param}`;
     return fetch(url, options);
   }
 }

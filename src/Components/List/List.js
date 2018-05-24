@@ -18,7 +18,6 @@ class List extends Component {
   handleClick() {}
 
   render() {
-    console.log(this.props);
     if (this.props.hasErrored) {
       return <p>Sorry! There was an error loading the items</p>;
     }

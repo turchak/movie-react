@@ -37,3 +37,14 @@ export const item = (state = [], action) => {
       return state;
   }
 };
+
+export const search = (state = [], action) => {
+  switch (action.type) {
+    case 'SEARCH_FETCH_DATA_SUCCESS':
+      console.log(action.search);
+      return action.search;
+
+    default:
+      return state;
+  }
+};
