@@ -2,10 +2,8 @@ import './Movie.css';
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import Header from '../Header/Header';
-// import Footer from '../Footer/Footer';
 import { itemFetchData } from '../../actions/items';
 import { withStyles } from '@material-ui/core/styles';
-// import green from '@material-ui/core/colors/green';
 import Loader from '../Loader/Loader';
 import Typography from '@material-ui/core/Typography';
 

@@ -12,7 +12,7 @@ class List extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchData('/movie/top_rated');
+    this.props.fetchData('/movie/popular');
   }
 
   handleClick() {}

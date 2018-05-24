@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
-import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 
@@ -59,6 +57,7 @@ class Header extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleClick() {
@@ -72,15 +71,19 @@ class Header extends Component {
     });
   }
 
+  handleSubmit(ev) {
+    ev.preventDefault();
+  }
+
   render() {
     const { classes } = this.props;
     return (
-      <Grid className={classes.header}>
+      <div className="header">
         <div className={classes.container}>
           <a href="#/" className={classes.logo}>
             Movie
           </a>
-          <FormControl className={classes.form}>
+          <form className={classes.form} onSubmit={this.handleSubmit}>
             <Input
               classes={{
                 root: classes.input,
@@ -91,15 +94,16 @@ class Header extends Component {
               onChange={this.handleChange}
             />
             <Button
+              type="submit"
               variant="raised"
               className={classes.button}
               onClick={this.handleClick}
             >
               Search
             </Button>
-          </FormControl>
+          </form>
         </div>
-      </Grid>
+      </div>
     );
   }
 }

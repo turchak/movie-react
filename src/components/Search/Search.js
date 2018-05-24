@@ -13,7 +13,7 @@ const styles = {
     margin: '0 auto',
   },
   card: {
-    width: 'calc(100% / 3)',
+    width: 'calc(100% / 5)',
   },
   results: {
     display: 'flex',
@@ -66,9 +66,7 @@ class Search extends Component {
           </Typography>
           <div className={classes.results}>
             {this.props.results.map(item => {
-              return (
-                <MovieCard item={item} key={item.id} className={classes.card} />
-              );
+              return <MovieCard item={item} key={item.id} />;
             })}
           </div>
         </div>
