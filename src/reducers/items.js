@@ -18,10 +18,14 @@ export const itemsIsLoading = (state = false, action) => {
   }
 };
 
-export const items = (state = [], action) => {
+export const popular = (state = { items: [], page: 0 }, action) => {
   switch (action.type) {
     case 'ITEMS_FETCH_DATA_SUCCESS':
-      return action.items;
+      return {
+        ...state,
+        items: [...state.items, ...action.popular.items],
+        page: action.popular.page,
+      };
 
     default:
       return state;
@@ -41,7 +45,6 @@ export const item = (state = [], action) => {
 export const search = (state = [], action) => {
   switch (action.type) {
     case 'SEARCH_FETCH_DATA_SUCCESS':
-      console.log(action.search);
       return action.search;
 
     default:

@@ -46,9 +46,10 @@ class MovieCard extends Component {
   }
 
   render() {
-    const { item, classes } = this.props;
+    const { item, classes, ownKey } = this.props;
+    // console.log(this.props);
     return (
-      <div className="card">
+      <div className="card" key={ownKey}>
         <Card className={classes.card}>
           <CardMedia
             classes={{
