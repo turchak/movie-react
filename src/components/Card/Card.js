@@ -9,6 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import green from '@material-ui/core/colors/green';
+import Loader from '../Loader/Loader';
+import img from '../../media/404.png';
 
 const styles = {
   card: {
@@ -47,7 +49,6 @@ class MovieCard extends Component {
 
   render() {
     const { item, classes, ownKey } = this.props;
-    // console.log(this.props);
     return (
       <div className="card" key={ownKey}>
         <Card className={classes.card}>
@@ -55,7 +56,7 @@ class MovieCard extends Component {
             classes={{
               root: classes.media,
             }}
-            image={this.getImage(item.poster_path)}
+            image={item.poster_path ? this.getImage(item.poster_path) : img}
             title={item.title}
             //TODO: change name
           />
@@ -73,11 +74,11 @@ class MovieCard extends Component {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small" color="primary">
-              <Link to={`/movie/${item.id}`} className={classes.link}>
+            <Link to={`/movie/${item.id}`} className={classes.link}>
+              <Button size="small" color="primary" className={classes.link}>
                 More
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </CardActions>
         </Card>
       </div>

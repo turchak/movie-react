@@ -39,14 +39,14 @@ export const resultsFetchDataSuccess = search => {
 
 export const itemsFetchData = (url, param) => {
   return dispatch => {
-    // dispatch(itemsIsLoading(true));
+    dispatch(itemsIsLoading(true));
     API.get(url, param)
       .then(response => {
         if (!response.ok) {
           throw Error(response.statusText);
         }
 
-        // dispatch(itemsIsLoading(false));
+        dispatch(itemsIsLoading(false));
 
         return response;
       })
@@ -76,7 +76,6 @@ export const itemFetchData = url => {
 };
 
 export const searchFetchData = (url, param) => {
-  console.log(param);
   return dispatch => {
     dispatch(itemsIsLoading(true));
     API.get(url, param)

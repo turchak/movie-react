@@ -55,7 +55,17 @@ class Search extends Component {
     }
 
     if (this.props.results.length <= 0) {
-      return null;
+      return (
+        <Fragment>
+          <Header />
+          <Typography variant="headline" gutterBottom align="center">
+            Search results...
+          </Typography>
+          <Typography variant="headline" gutterBottom align="center">
+            0
+          </Typography>
+        </Fragment>
+      );
     }
     return (
       <Fragment>

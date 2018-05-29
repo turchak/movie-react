@@ -6,6 +6,7 @@ import { itemFetchData } from '../../actions/items';
 import { withStyles } from '@material-ui/core/styles';
 import Loader from '../Loader/Loader';
 import Typography from '@material-ui/core/Typography';
+import img from '../../media/404.png';
 
 const styles = {
   container: {
@@ -67,7 +68,10 @@ class Movie extends Component {
         <div className={classes.container}>
           <div className={classes.info}>
             <div className={classes.img}>
-              <img src={this.getImage(movie.backdrop_path)} alt={movie.title} />
+              <img
+                src={movie.poster_path ? this.getImage(movie.poster_path) : img}
+                alt={movie.title}
+              />
             </div>
             <div className={classes.content}>
               <Typography variant="headline" gutterBottom>
