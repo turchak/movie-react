@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import {
   popular,
   item,
+  genres,
   itemsHasErrored,
   itemsIsLoading,
   search,
@@ -12,6 +13,7 @@ export const rootReducer = combineReducers({
   routing: routerReducer,
   popular,
   item,
+  genres,
   search,
   itemsHasErrored,
   itemsIsLoading,

@@ -1,7 +1,7 @@
 import './List.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { itemsFetchData } from '../../actions/items';
+import { itemsFetchData, genresFetchData } from '../../actions/items';
 import MovieCard from '../Card/Card';
 import Loader from '../Loader/Loader';
 import InfiniteScroll from 'react-infinite-scroller';
@@ -15,47 +15,31 @@ class List extends Component {
     };
   }
 
-  componentDidMount() {
-    // this.props.fetchData('/movie/popular', `&page=${this.props.page}`);
-    // this.loadData();
-  }
-
   loadData(page) {
-    console.log(page);
     this.props.fetchData('/movie/popular', `&page=${page}`);
   }
 
   render() {
-    const { items, page } = this.props;
-    console.log(this.props);
-
-    // console.log(items, page);
+    const { items, genres } = this.props;
+    console.log(items);
 
     if (this.props.hasErrored) {
       return <p>Sorry! There was an error loading the items</p>;
     }
 
-    // if (this.props.isLoading) {
-    //   return <Loader />;
-    // }
-
-    // if (items.length === 0) {
-    //   return <Loader />;
-    // }
-
     return (
-      // <main className="list">
       <InfiniteScroll
         initialLoad={true}
         className="container list__container"
-        pageStart={page}
+        pageStart={0}
         loadMore={this.loadData.bind(this)}
         hasMore={this.state.hasMoreItems}
         loader={<Loader key={0} />}
       >
-        {this.props.items.map(item => <MovieCard item={item} key={item.id} />)}
+        {this.props.items.map(item => (
+          <MovieCard item={item} key={item.id} genres={genres} />
+        ))}
       </InfiniteScroll>
-      // </main>
     );
   }
 }
@@ -63,15 +47,16 @@ class List extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     items: state.popular.items,
-    page: state.popular.page,
+    // page: state.popular.page,
     hasErrored: state.itemsHasErrored,
-    // isLoading: state.itemsIsLoading,
+    genres: state.genres.entities.genres,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchData: (url, param) => dispatch(itemsFetchData(url, param)),
+    fetchGenres: url => dispatch(genresFetchData(url)),
   };
 };
 

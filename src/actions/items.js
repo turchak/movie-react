@@ -1,4 +1,5 @@
 import { API } from '../utils/api';
+import { normalize, schema } from 'normalizr';
 export const itemsHasErrored = bool => {
   return {
     type: 'ITEMS_HAS_ERRORED',
@@ -34,6 +35,13 @@ export const resultsFetchDataSuccess = search => {
   return {
     type: 'SEARCH_FETCH_DATA_SUCCESS',
     search,
+  };
+};
+
+export const genresFetchDataSuccess = genres => {
+  return {
+    type: 'GENRES_FETCH_DATA_SUCCESS',
+    genres,
   };
 };
 
@@ -90,6 +98,31 @@ export const searchFetchData = (url, param) => {
       })
       .then(response => response.json())
       .then(search => dispatch(resultsFetchDataSuccess(search.results)))
+      .catch(() => dispatch(itemsHasErrored(true)));
+  };
+};
+
+export const genresFetchData = url => {
+  return dispatch => {
+    dispatch(itemsIsLoading(true));
+    API.get(url)
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+
+        dispatch(itemsIsLoading(false));
+
+        return response;
+      })
+      .then(response => response.json())
+      .then(results => {
+        const genresData = results;
+        const genres = new schema.Entity('genres');
+        const genresSchema = { genres: [genres] };
+        const normalizedData = normalize(genresData, genresSchema);
+        dispatch(genresFetchDataSuccess(normalizedData));
+      })
       .catch(() => dispatch(itemsHasErrored(true)));
   };
 };

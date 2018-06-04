@@ -6,15 +6,19 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import ListItemText from '@material-ui/core/ListItemText';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import green from '@material-ui/core/colors/green';
-import Loader from '../Loader/Loader';
 import img from '../../media/404.png';
+import SubjectIcon from '@material-ui/icons/Subject';
 
 const styles = {
   card: {
     maxWidth: 345,
+    position: 'relative',
   },
   media: {
     height: 0,
@@ -39,6 +43,13 @@ const styles = {
     textDecoration: 'none',
     color: green[200],
   },
+  icon: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    color: 'white',
+    cursor: 'pointer',
+  },
 };
 
 class MovieCard extends Component {
@@ -47,11 +58,16 @@ class MovieCard extends Component {
     return `${IMG_URL}${url}`;
   }
 
+  handleClick = () => {
+    console.log('hello');
+  };
+
   render() {
-    const { item, classes, ownKey } = this.props;
+    const { item, classes, ownKey, genres } = this.props;
     return (
       <div className="card" key={ownKey}>
         <Card className={classes.card}>
+          <SubjectIcon className={classes.icon} onClick={this.handleClick} />
           <CardMedia
             classes={{
               root: classes.media,
@@ -72,6 +88,15 @@ class MovieCard extends Component {
             <Typography component="p" className={classes.info}>
               {item.overview}
             </Typography>
+            <List>
+              {item.genre_ids.map(item => {
+                return (
+                  <ListItem key={item}>
+                    <ListItemText primary={genres[item].name} />
+                  </ListItem>
+                );
+              })}
+            </List>
           </CardContent>
           <CardActions>
             <Link to={`/movie/${item.id}`} className={classes.link}>

@@ -21,6 +21,8 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     width: '50%',
+    padding: '15px',
+    textAlign: 'center',
   },
   img: {
     width: '50%',
@@ -40,13 +42,22 @@ class Movie extends Component {
     return `${IMG_URL}${url}`;
   }
 
+  transformPrice(price) {
+    const arr = price.toString().split('');
+    for (let i = arr.length - 1; i > 0; i--) {
+      if ((arr.length - i) % 3 === 0) {
+        arr[i - 1] = arr[i - 1] + ' ';
+      }
+    }
+    return arr.join('');
+  }
+
   componentDidMount() {
     this.props.fetchData(`/movie/${this.props.id}`);
   }
 
   render() {
     const { movie, classes } = this.props;
-    console.log(this.props);
 
     if (this.props.isLoading) {
       return (
@@ -81,7 +92,7 @@ class Movie extends Component {
                 Release Date: {movie.release_date}
               </Typography>
               <Typography gutterBottom>
-                Budget: {movie.budget + ' $'}
+                Budget: {this.transformPrice(movie.budget) + ' $'}
               </Typography>
               <Typography gutterBottom>
                 Production:{' '}

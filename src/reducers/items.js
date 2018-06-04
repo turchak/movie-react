@@ -51,3 +51,13 @@ export const search = (state = [], action) => {
       return state;
   }
 };
+
+export const genres = (state = [], action) => {
+  switch (action.type) {
+    case 'GENRES_FETCH_DATA_SUCCESS':
+      return action.genres;
+
+    default:
+      return state;
+  }
+};
