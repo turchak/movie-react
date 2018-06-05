@@ -64,6 +64,23 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'space-between',
   },
+  list: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    padding: 0,
+  },
+  item: {
+    margin: 2,
+    padding: '0 0 0 2px',
+    borderRadius: 2,
+    background: 'rgba(165,214,167, .5)',
+  },
+  name: {
+    '&>h3': {
+      color: '#fff',
+    },
+  },
 });
 
 class MovieCard extends Component {
@@ -102,15 +119,22 @@ class MovieCard extends Component {
               <Typography component="p" className={classes.info}>
                 {item.overview}
               </Typography>
-              <List>
-                {item.genre_ids.map(item => {
-                  return (
-                    <ListItem key={item}>
-                      <ListItemText primary={genres[item].name} />
-                    </ListItem>
-                  );
-                })}
-              </List>
+              {genres ? (
+                <List className={classes.list}>
+                  {item.genre_ids.map(item => {
+                    return (
+                      <ListItem key={item} className={classes.item}>
+                        <ListItemText
+                          primary={genres[item].name}
+                          className={classes.name}
+                        />
+                      </ListItem>
+                    );
+                  })}
+                </List>
+              ) : (
+                ''
+              )}
             </CardContent>
             <CardActions className={classes.actions}>
               <Link to={`/movie/${item.id}`} className={classes.link}>
@@ -123,15 +147,6 @@ class MovieCard extends Component {
                   More
                 </Button>
               </Link>
-              <Button
-                variant="raised"
-                size="small"
-                color="primary"
-                className={classes.link}
-              >
-                Genres
-              </Button>
-              {/* <SubjectIcon className={classes.icon} onClick={this.handleClick} /> */}
             </CardActions>
           </Card>
         </div>
