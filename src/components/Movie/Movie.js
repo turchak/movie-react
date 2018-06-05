@@ -39,6 +39,11 @@ const styles = theme => ({
   },
   img: {
     width: '30%',
+    padding: 20,
+  },
+  imgFavorite: {
+    boxSizing: 'border-box',
+    boxShadow: `4px 5px 28px rgba(76,175,80,1), 0 10px 10px rgba(0,0,0,0.22)`,
   },
   favorite: {
     color: theme.palette.getContrastText(green[600]),
@@ -131,6 +136,7 @@ class Movie extends Component {
                     movie.poster_path ? this.getImage(movie.poster_path) : img
                   }
                   alt={movie.title}
+                  className={isFavorite ? classes.imgFavorite : null}
                 />
               </div>
               <div className={classes.content}>
