@@ -2,7 +2,6 @@ import './App.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { genresFetchData } from './actions/items';
-
 import Header from './components/Header/Header';
 import List from './components/List/List';
 import Loader from './components/Loader/Loader';

@@ -10,7 +10,7 @@ const styles = theme => ({
     fontFamily: 'Pacifico, cursive',
     textDecoration: 'none',
     fontSize: 50,
-    color: green[200],
+    color: green[600],
     alignItems: 'center',
     margin: '15px 0px',
     width: 100,
@@ -27,21 +27,31 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'baseline',
+    '&>div:hover::before': {
+      borderBottom: '2px solid #a5d6a7!important',
+    },
   },
   button: {
     color: theme.palette.getContrastText(green[600]),
     marginLeft: 15,
     backgroundColor: green[600],
     '&:hover': {
-      backgroundColor: green[700],
+      backgroundColor: green[400],
     },
   },
   input: {
     '&:hover': {
-      borderBottomColor: green[200],
+      borderBottomColor: green[600],
       '&::before': {
-        borderBottomColor: green[200],
+        borderBottomColor: green[600],
       },
+      '&::after': {
+        borderBottomColor: green[600],
+      },
+      borderBottomColor: green[600],
+    },
+    '&::before': {
+      borderBottomColor: green[200],
     },
     '&::after': {
       borderBottomColor: green[200],

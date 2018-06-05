@@ -9,13 +9,29 @@ import Typography from '@material-ui/core/Typography';
 import ListItemText from '@material-ui/core/ListItemText';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import { withStyles } from '@material-ui/core/styles';
+import {
+  withStyles,
+  createMuiTheme,
+  MuiThemeProvider,
+} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import green from '@material-ui/core/colors/green';
 import img from '../../media/404.png';
 import SubjectIcon from '@material-ui/icons/Subject';
 
-const styles = {
+// const theme2 = theme => ({
+//   ...theme,
+//   primary: {
+//     color: green[600],
+//   },
+// });
+const theme = createMuiTheme({
+  palette: {
+    primary: green,
+  },
+});
+
+const styles = theme => ({
   card: {
     maxWidth: 345,
     position: 'relative',
@@ -41,16 +57,14 @@ const styles = {
   },
   link: {
     textDecoration: 'none',
-    color: green[200],
+    color: theme.palette.getContrastText(green[600]),
+    // background: green[600],
   },
-  icon: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    color: 'white',
-    cursor: 'pointer',
+  actions: {
+    display: 'flex',
+    justifyContent: 'space-between',
   },
-};
+});
 
 class MovieCard extends Component {
   getImage(url) {
@@ -65,48 +79,63 @@ class MovieCard extends Component {
   render() {
     const { item, classes, ownKey, genres } = this.props;
     return (
-      <div className="card" key={ownKey}>
-        <Card className={classes.card}>
-          <SubjectIcon className={classes.icon} onClick={this.handleClick} />
-          <CardMedia
-            classes={{
-              root: classes.media,
-            }}
-            image={item.poster_path ? this.getImage(item.poster_path) : img}
-            title={item.title}
-            //TODO: change name
-          />
-          <CardContent>
-            <Typography
-              gutterBottom
-              variant="headline"
-              noWrap={true}
-              component="h2"
-            >
-              {item.title}
-            </Typography>
-            <Typography component="p" className={classes.info}>
-              {item.overview}
-            </Typography>
-            <List>
-              {item.genre_ids.map(item => {
-                return (
-                  <ListItem key={item}>
-                    <ListItemText primary={genres[item].name} />
-                  </ListItem>
-                );
-              })}
-            </List>
-          </CardContent>
-          <CardActions>
-            <Link to={`/movie/${item.id}`} className={classes.link}>
-              <Button size="small" color="primary" className={classes.link}>
-                More
+      <MuiThemeProvider theme={theme}>
+        <div className="card" key={ownKey}>
+          <Card className={classes.card}>
+            <CardMedia
+              classes={{
+                root: classes.media,
+              }}
+              image={item.poster_path ? this.getImage(item.poster_path) : img}
+              title={item.title}
+              //TODO: change name
+            />
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="headline"
+                noWrap={true}
+                component="h2"
+              >
+                {item.title}
+              </Typography>
+              <Typography component="p" className={classes.info}>
+                {item.overview}
+              </Typography>
+              <List>
+                {item.genre_ids.map(item => {
+                  return (
+                    <ListItem key={item}>
+                      <ListItemText primary={genres[item].name} />
+                    </ListItem>
+                  );
+                })}
+              </List>
+            </CardContent>
+            <CardActions className={classes.actions}>
+              <Link to={`/movie/${item.id}`} className={classes.link}>
+                <Button
+                  variant="raised"
+                  size="small"
+                  color="primary"
+                  className={classes.link}
+                >
+                  More
+                </Button>
+              </Link>
+              <Button
+                variant="raised"
+                size="small"
+                color="primary"
+                className={classes.link}
+              >
+                Genres
               </Button>
-            </Link>
-          </CardActions>
-        </Card>
-      </div>
+              {/* <SubjectIcon className={classes.icon} onClick={this.handleClick} /> */}
+            </CardActions>
+          </Card>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
