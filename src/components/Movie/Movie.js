@@ -13,10 +13,11 @@ import Button from '@material-ui/core/Button';
 import img from '../../media/404.png';
 import { FAVORITES } from '../../utils/favorites.js';
 import green from '@material-ui/core/colors/green';
-
+import red from '@material-ui/core/colors/red';
 const theme = createMuiTheme({
   palette: {
     primary: green,
+    secondary: red,
   },
 });
 
@@ -42,6 +43,9 @@ const styles = theme => ({
   favorite: {
     color: theme.palette.getContrastText(green[600]),
     alignSelf: 'flex-end',
+    '&>span': {
+      pointerEvents: 'none',
+    },
   },
   description: {
     display: 'flex',
@@ -64,13 +68,23 @@ class Movie extends Component {
     return `${IMG_URL}${url}`;
   }
 
-  handleClick() {
-    FAVORITES.setList(this.props.id);
-    if (!this.state.isFavorite) {
+  handleClick(ev) {
+    if (ev.target.dataset.name === 'is-not-favorite') {
+      FAVORITES.setList(this.props.id);
+      if (!this.state.isFavorite) {
+        this.setState({
+          isFavorite: true,
+        });
+      }
+    }
+    if (ev.target.dataset.name === 'is-favorite') {
+      FAVORITES.deleteMovie(this.props.id);
       this.setState({
-        isFavorite: true,
+        isFavorite: false,
       });
     }
+
+    console.dir(ev.target.dataset.name);
   }
 
   transformPrice(price) {
@@ -166,9 +180,10 @@ class Movie extends Component {
                   onClick={this.handleClick}
                   variant="raised"
                   size="small"
-                  color="primary"
+                  data-name={isFavorite ? 'is-favorite' : 'is-not-favorite'}
+                  color={isFavorite ? 'secondary' : 'primary'}
                 >
-                  Add to favorites
+                  {isFavorite ? 'Remove from favorites' : 'Add to favorites'}
                 </Button>
               </div>
             </div>

@@ -19,8 +19,22 @@ class Favorites {
     }
   }
 
+  deleteMovie(movie) {
+    const list = this.getList();
+    if (list.includes(movie)) {
+      let i = list.indexOf(movie);
+      if (i !== -1) {
+        list.splice(i, 1);
+      }
+      const listString = JSON.stringify(list);
+      this.movies = list;
+      window.localStorage.setItem('Movies', listString);
+    }
+  }
+
   checkList(movie) {
     const list = this.movies;
+    console.log(list);
     if (list.includes(movie)) {
       return true;
     }
