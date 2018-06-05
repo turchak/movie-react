@@ -48,7 +48,6 @@ const styles = theme => ({
       '&::after': {
         borderBottomColor: green[600],
       },
-      borderBottomColor: green[600],
     },
     '&::before': {
       borderBottomColor: green[200],

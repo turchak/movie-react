@@ -17,7 +17,7 @@ import {
 import Button from '@material-ui/core/Button';
 import green from '@material-ui/core/colors/green';
 import img from '../../media/404.png';
-import SubjectIcon from '@material-ui/icons/Subject';
+// import SubjectIcon from '@material-ui/icons/Subject';
 
 // const theme2 = theme => ({
 //   ...theme,
@@ -58,7 +58,6 @@ const styles = theme => ({
   link: {
     textDecoration: 'none',
     color: theme.palette.getContrastText(green[600]),
-    // background: green[600],
   },
   actions: {
     display: 'flex',

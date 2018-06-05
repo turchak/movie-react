@@ -20,8 +20,7 @@ class List extends Component {
   }
 
   render() {
-    const { items, genres } = this.props;
-    console.log(items);
+    const { genres } = this.props;
 
     if (this.props.hasErrored) {
       return <p>Sorry! There was an error loading the items</p>;
@@ -60,4 +59,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(List);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(List);
