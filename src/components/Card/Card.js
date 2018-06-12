@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Card.css';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -33,7 +32,7 @@ const theme = createMuiTheme({
 
 const styles = theme => ({
   card: {
-    maxWidth: 345,
+    width: '100%',
     position: 'relative',
   },
   media: {
@@ -96,8 +95,7 @@ class MovieCard extends Component {
     const { item, classes, ownKey, genres } = this.props;
     return (
       <MuiThemeProvider theme={theme}>
-        <div className="card" key={ownKey}>
-          <Card className={classes.card}>
+          <Card className={classes.card} key={ownKey}>
             <CardMedia
               classes={{
                 root: classes.media,
@@ -148,7 +146,6 @@ class MovieCard extends Component {
               </Link>
             </CardActions>
           </Card>
-        </div>
       </MuiThemeProvider>
     );
   }

@@ -1,5 +1,5 @@
 import './index.css';
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
@@ -18,11 +18,11 @@ const history = createHistory();
 ReactDOM.render(
   <Provider store={store} key="provider">
     <ConnectedRouter history={history}>
-      <div>
+      <Fragment>
         <Route exact path="/" component={App} />
         <Route path="/movie/:itemId" component={Movie} />
         <Route useKey={false} path="/search/:itemId" component={Search} />
-      </div>
+      </Fragment>
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root')

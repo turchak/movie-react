@@ -46,7 +46,6 @@ class List extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     items: state.popular.items,
-    // page: state.popular.page,
     hasErrored: state.itemsHasErrored,
     genres: state.genres.entities.genres,
   };
