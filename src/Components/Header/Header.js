@@ -18,7 +18,6 @@ const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
-    // justifyContent: 'space-between',
     alignItems: 'center',
     maxWidth: 1280,
     margin: '0 auto',
@@ -96,7 +95,6 @@ class Header extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className="header">
         <div className={classes.container}>
           <a href="#/" className={classes.logo}>
             Movie
@@ -120,7 +118,6 @@ class Header extends Component {
               Search
             </Button>
           </form>
-        </div>
       </div>
     );
   }

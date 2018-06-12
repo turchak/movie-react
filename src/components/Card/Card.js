@@ -16,14 +16,7 @@ import {
 import Button from '@material-ui/core/Button';
 import green from '@material-ui/core/colors/green';
 import img from '../../media/404.png';
-// import SubjectIcon from '@material-ui/icons/Subject';
 
-// const theme2 = theme => ({
-//   ...theme,
-//   primary: {
-//     color: green[600],
-//   },
-// });
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -32,8 +25,17 @@ const theme = createMuiTheme({
 
 const styles = theme => ({
   card: {
-    width: '100%',
     position: 'relative',
+    marginBottom: 15,
+    width: 'calc(100% / 4 - 45px / 4)',
+    
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+    },
+    '&:not(:nth-child(4n))': {
+      marginRight: 15,
+    }
+    
   },
   media: {
     height: 0,
