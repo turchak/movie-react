@@ -34,6 +34,10 @@ const styles = theme => ({
     },
     '&:not(:nth-child(4n))': {
       marginRight: 15,
+      [theme.breakpoints.down('md')]: {
+        width: '100%',
+        marginRight: 0,
+      }
     }
     
   },
