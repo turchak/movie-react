@@ -11,6 +11,7 @@ const styles = {
   container: {
     maxWidth: 1280,
     margin: '0 auto',
+    padding: '0 15px',
   },
   card: {
     width: 'calc(100% / 5)',
