@@ -13,20 +13,29 @@ const styles = theme => ({
     color: green[600],
     alignItems: 'center',
     margin: '15px 0px',
-    width: 100,
     height: 50,
   },
   container: {
     display: 'flex',
-    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    // justifyContent: 'space-between',
     alignItems: 'center',
     maxWidth: 1280,
     margin: '0 auto',
+    padding: '0 15px',
+    [theme.breakpoints.up('sm')]: {
+      flexWrap: 'nowrap',
+    },
   },
   form: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'baseline',
+    width: '100%',
+    justifyContent: 'center',
+    [theme.breakpoints.up('sm')]: {
+      justifyContent: 'flex-end',
+    },
     '&>div:hover::before': {
       borderBottom: '2px solid #a5d6a7!important',
     },

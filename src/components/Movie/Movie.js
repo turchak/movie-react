@@ -39,7 +39,7 @@ const styles = theme => ({
   },
   img: {
     width: '30%',
-    padding: 20,
+    padding: 15,
   },
   imgFavorite: {
     boxSizing: 'border-box',
