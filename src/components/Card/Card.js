@@ -93,9 +93,7 @@ class MovieCard extends Component {
     return `${IMG_URL}${url}`;
   }
 
-  handleClick = () => {
-    console.log('hello');
-  };
+  handleClick = () => {};
 
   render() {
     const { item, classes, ownKey, genres } = this.props;
