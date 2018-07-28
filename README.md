@@ -1,2 +1,9 @@
-Demo: [Movie App](https://turchak.github.io/movie-react/);
-Task: [Test Task for Intern / Junior Front-End Developer Position @ Youscan](https://gist.github.com/krambertech/ecb3890824fd7ada0f4ec1ff55125758);
+The learning project for *Kottans*
+
+Demo: [Movie App](https://turchak.github.io/movie-react/)
+* React
+* Redux
+* Redux-thunk
+* Normalizr
+* React-router
+* Material-UI
